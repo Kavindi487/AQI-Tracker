@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AQI Predictor</title>
+  <style>
+    body { font-family: Arial; background: #f6f8fa; padding: 30px; }
+    .card { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 14px; }
+    input, select, button { width: 100%; padding: 10px; margin-top: 10px; }
+    button { background: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    .result { margin-top: 15px; padding: 12px; border-radius: 10px; background: #eef2ff; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🌫️ AQI Predictor – Sri Lanka</h2>
+
+    <form method="POST">
+      <select name="city">
+        <option>Colombo</option>
+        <option>Kandy</option>
+        <option>Galle</option>
+      </select>
+
+      <input name="pm25" placeholder="PM2.5 (µg/m³)" required>
+      <input name="co" placeholder="CO (mg/m³)" required>
+      <input name="no2" placeholder="NO₂ (ppb)" required>
+
+      <button type="submit">Predict AQI</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+      <h3>AQI: {{ prediction }}</h3>
+      <p>Status: {{ category }}</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
