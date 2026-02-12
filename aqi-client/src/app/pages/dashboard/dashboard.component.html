@@ -1,0 +1,71 @@
+<app-navbar />
+
+<div class="bg-gray-50 min-h-[calc(100vh-64px)]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <h1 class="text-4xl font-extrabold text-gray-900">Air Quality Index (AQI) Predictor</h1>
+    <p class="mt-2 text-gray-600 max-w-3xl">
+      Using machine learning to forecast air quality across Sri Lanka’s major cities based on pollutant metrics.
+    </p>
+
+    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Input card -->
+      <div class="bg-white rounded-3xl border shadow-sm p-6">
+        <h2 class="text-lg font-bold text-gray-900">Input Parameters</h2>
+
+        <div class="mt-5 space-y-4">
+          <div>
+            <label class="text-sm font-semibold text-gray-700">Select City</label>
+            <select [(ngModel)]="city" class="mt-2 w-full rounded-2xl border px-4 py-3">
+              <option>Colombo</option>
+              <option>Kandy</option>
+              <option>Galle</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="text-sm font-semibold text-gray-700">PM2.5 (µg/m³)</label>
+            <input [(ngModel)]="pm25" type="number" class="mt-2 w-full rounded-2xl border px-4 py-3" placeholder="e.g. 12.5" />
+          </div>
+
+          <div>
+            <label class="text-sm font-semibold text-gray-700">CO (ppm)</label>
+            <input [(ngModel)]="co" type="number" class="mt-2 w-full rounded-2xl border px-4 py-3" placeholder="e.g. 0.8" />
+          </div>
+
+          <div>
+            <label class="text-sm font-semibold text-gray-700">NO₂ (ppb)</label>
+            <input [(ngModel)]="no2" type="number" class="mt-2 w-full rounded-2xl border px-4 py-3" placeholder="e.g. 24.0" />
+          </div>
+
+          <button (click)="predictMock()"
+            class="w-full rounded-2xl bg-green-500 py-3 font-bold text-white hover:bg-green-600">
+            Predict AQI
+          </button>
+        </div>
+      </div>
+
+      <!-- Result card -->
+      <div class="bg-white rounded-3xl border shadow-sm p-6 flex flex-col items-center justify-center">
+        <div class="w-full flex items-center justify-between">
+          <h2 class="text-lg font-bold text-gray-900">Prediction Result</h2>
+          <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">UPDATED LIVE</span>
+        </div>
+
+        <div class="mt-10 h-56 w-56 rounded-full border-[14px] border-green-500 flex items-center justify-center">
+          <div class="text-center">
+            <div class="text-6xl font-extrabold text-gray-900">{{ aqi ?? 0 }}</div>
+            <div class="text-xs tracking-widest text-gray-500">AQI VALUE</div>
+          </div>
+        </div>
+
+        <div class="mt-6 px-5 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
+          {{ label }}
+        </div>
+
+        <p class="mt-4 text-gray-600 text-center max-w-md">
+          Air quality category is estimated based on entered pollutant levels. (Demo mode for UI.)
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

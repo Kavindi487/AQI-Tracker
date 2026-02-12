@@ -1,0 +1,114 @@
+<app-navbar />
+
+<div class="min-h-[calc(100vh-64px)] bg-gray-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      <!-- LEFT: Hero image -->
+      <div class="relative overflow-hidden rounded-3xl min-h-[520px]">
+        <img
+          src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=80"
+          class="absolute inset-0 h-full w-full object-cover"
+          alt="Sri Lanka nature"
+        />
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <div class="relative p-8 h-full flex flex-col justify-end text-white">
+          <div class="mb-6 flex items-center gap-3">
+            <div class="h-12 w-12 rounded-full bg-green-500/80 flex items-center justify-center">
+              ✅
+            </div>
+            <span class="text-sm font-semibold tracking-wide">AQI Tracker Sri Lanka</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+            Breathe easy in <span class="text-green-400">Sri Lanka</span>.
+          </h1>
+
+          <p class="mt-4 text-white/90 max-w-md">
+            Join thousands of Sri Lankans using ML to track, predict, and avoid harmful air pollutants.
+          </p>
+
+          <div class="mt-8 flex items-center gap-3 text-sm text-white/90">
+            <div class="flex -space-x-2">
+              <div class="h-8 w-8 rounded-full bg-white/30 border border-white/30"></div>
+              <div class="h-8 w-8 rounded-full bg-white/30 border border-white/30"></div>
+              <div class="h-8 w-8 rounded-full bg-white/30 border border-white/30"></div>
+            </div>
+            <span><b>5,000+</b> users monitoring air daily</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="bg-white rounded-3xl p-8 shadow-sm border">
+        <h2 class="text-3xl font-extrabold text-gray-900">Join AQI Predictor</h2>
+        <p class="mt-2 text-gray-600">Create your account to start monitoring air quality.</p>
+
+        <form class="mt-8 space-y-5">
+          <div>
+            <label class="text-sm font-semibold text-gray-700">Full Name</label>
+            <input class="mt-2 w-full rounded-2xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                   placeholder="Enter your full name" />
+          </div>
+
+          <div>
+            <label class="text-sm font-semibold text-gray-700">Email Address</label>
+            <input type="email"
+                   class="mt-2 w-full rounded-2xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                   placeholder="name@example.com" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm font-semibold text-gray-700">Password</label>
+              <input type="password"
+                     class="mt-2 w-full rounded-2xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                     placeholder="••••••••" />
+            </div>
+            <div>
+              <label class="text-sm font-semibold text-gray-700">Confirm</label>
+              <input type="password"
+                     class="mt-2 w-full rounded-2xl border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                     placeholder="••••••••" />
+            </div>
+          </div>
+
+          <label class="flex items-center gap-3 text-sm text-gray-600">
+            <input type="checkbox" class="h-4 w-4 rounded border-gray-300" />
+            I agree to the <span class="text-green-600 font-semibold">Terms</span> and
+            <span class="text-green-600 font-semibold">Privacy Policy</span>.
+          </label>
+
+          <button
+            type="button"
+            class="w-full rounded-2xl bg-green-500 py-3 font-bold text-white hover:bg-green-600"
+          >
+            Create Account →
+          </button>
+
+          <div class="text-center text-xs text-gray-400">OR CONTINUE WITH</div>
+
+          <button type="button" class="w-full rounded-2xl border py-3 font-semibold hover:bg-gray-50">
+            G Continue with Google
+          </button>
+
+          <p class="text-center text-sm text-gray-600">
+            Already have an account?
+            <a routerLink="/login" class="font-semibold text-green-600 hover:underline">Log in</a>
+          </p>
+        </form>
+      </div>
+
+    </div>
+
+    <footer class="mt-10 flex items-center justify-between text-sm text-gray-500">
+      <span>© 2026 AQI Predictor Sri Lanka. Data-driven breathing.</span>
+      <div class="flex gap-6">
+        <a class="hover:text-gray-700" href="#">Privacy</a>
+        <a class="hover:text-gray-700" href="#">Terms</a>
+        <a class="hover:text-gray-700" href="#">Support</a>
+      </div>
+    </footer>
+  </div>
+</div>
