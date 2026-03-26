@@ -9,7 +9,7 @@ import { AqiService, PredictResponse } from '../../service/aqi.service';
   standalone: true,
   imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   city = 'Colombo';
@@ -55,7 +55,7 @@ export class DashboardComponent {
     });
   }
 
-  getRingClass(): string {
+  getRingClass(): 'low' | 'medium' | 'high' {
     const category = this.label.toLowerCase();
 
     if (category.includes('good')) return 'low';

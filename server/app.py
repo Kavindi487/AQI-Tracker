@@ -6,7 +6,6 @@ from pathlib import Path
 
 app = Flask(__name__)
 
-# Allow Angular frontend
 CORS(
     app,
     resources={r"/api/*": {"origins": ["http://localhost:4200"]}},
@@ -15,8 +14,6 @@ CORS(
 
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "model" / "aqi_model.pkl"
-
-# Load trained ML pipeline
 model = joblib.load(MODEL_PATH)
 
 
@@ -79,9 +76,7 @@ def predict():
         no2 = float(data["no2"])
 
         if pm25 < 0 or co < 0 or no2 < 0:
-            return jsonify({
-                "error": "Pollutant values must be non-negative"
-            }), 400
+            return jsonify({"error": "Pollutant values must be non-negative"}), 400
 
         X = pd.DataFrame([{
             "city": city,
@@ -91,11 +86,10 @@ def predict():
         }])
 
         predicted_aqi = round(float(model.predict(X)[0]), 1)
-        aqi_category = category(predicted_aqi)
 
         return jsonify({
             "aqi": predicted_aqi,
-            "category": aqi_category,
+            "category": category(predicted_aqi),
             "advice": advice(predicted_aqi),
             "inputs": {
                 "city": city,
@@ -106,72 +100,9 @@ def predict():
         }), 200
 
     except ValueError:
-        return jsonify({
-            "error": "pm25, co, and no2 must be numeric values"
-        }), 400
+        return jsonify({"error": "pm25, co, and no2 must be numeric values"}), 400
     except Exception as e:
-        return jsonify({
-            "error": "Prediction failed",
-            "details": str(e)
-        }), 500
-
-
-# Optional placeholder endpoints for your current login/register UI
-@app.post("/api/register")
-def register():
-    try:
-        data = request.get_json()
-
-        full_name = str(data.get("fullName", "")).strip()
-        email = str(data.get("email", "")).strip()
-        password = str(data.get("password", "")).strip()
-        confirm_password = str(data.get("confirmPassword", "")).strip()
-
-        if not full_name or not email or not password or not confirm_password:
-            return jsonify({"error": "All fields are required"}), 400
-
-        if password != confirm_password:
-            return jsonify({"error": "Passwords do not match"}), 400
-
-        return jsonify({
-            "message": "Registration successful (demo backend)",
-            "user": {
-                "fullName": full_name,
-                "email": email
-            }
-        }), 201
-
-    except Exception as e:
-        return jsonify({
-            "error": "Registration failed",
-            "details": str(e)
-        }), 500
-
-
-@app.post("/api/login")
-def login():
-    try:
-        data = request.get_json()
-
-        email = str(data.get("email", "")).strip()
-        password = str(data.get("password", "")).strip()
-
-        if not email or not password:
-            return jsonify({"error": "Email and password are required"}), 400
-
-        return jsonify({
-            "message": "Login successful (demo backend)",
-            "token": "demo-token-12345",
-            "user": {
-                "email": email
-            }
-        }), 200
-
-    except Exception as e:
-        return jsonify({
-            "error": "Login failed",
-            "details": str(e)
-        }), 500
+        return jsonify({"error": "Prediction failed", "details": str(e)}), 500
 
 
 if __name__ == "__main__":

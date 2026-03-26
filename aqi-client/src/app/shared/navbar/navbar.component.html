@@ -1,23 +1,46 @@
 <header class="w-full bg-white border-b">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
-      <!-- Brand -->
       <a routerLink="/dashboard" class="flex items-center gap-3">
-        <div class="h-9 w-9 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
+        <div class="flex h-9 w-9 items-center justify-center rounded-full bg-green-500 text-white font-bold">
           🌿
         </div>
         <span class="text-lg font-semibold text-gray-900">AQI Predictor</span>
       </a>
-      
 
-      <!-- Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm text-gray-700">
-        <a routerLink="/dashboard" class="hover:text-gray-900">Home</a>
-        <a routerLink="/cities" class="hover:text-gray-900">Cities</a>
-        <a routerLink="/about" class="hover:text-gray-900">About</a>
-        <a routerLink="/login" class="rounded-full bg-green-500 px-5 py-2 text-sm font-semibold text-white hover:bg-green-600">Login</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+        <a
+          routerLink="/dashboard"
+          routerLinkActive="text-green-600"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="transition hover:text-gray-900"
+        >
+          Home
+        </a>
+
+        <a
+          routerLink="/cities"
+          routerLinkActive="text-green-600"
+          class="transition hover:text-gray-900"
+        >
+          Cities
+        </a>
+
+        <a
+          routerLink="/about"
+          routerLinkActive="text-green-600"
+          class="transition hover:text-gray-900"
+        >
+          About
+        </a>
+
+        <a
+          routerLink="/login"
+          class="rounded-full bg-green-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-green-600"
+        >
+          Login
+        </a>
       </nav>
-      
     </div>
   </div>
 </header>

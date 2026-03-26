@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <section class="cities-page">
   <div class="cities-hero">
     <div>
@@ -5,65 +7,25 @@
       <h1>City Risk Map</h1>
       <p class="subtitle">
         Explore estimated air quality risk levels across major Sri Lankan cities.
-        Colors indicate low, medium, and high risk zones.
       </p>
-    </div>
-
-    <div class="legend">
-      <div class="legend-item">
-        <span class="legend-dot low"></span>
-        <span>Low Risk</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-dot medium"></span>
-        <span>Medium Risk</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-dot high"></span>
-        <span>High Risk</span>
-      </div>
     </div>
   </div>
 
   <div class="cities-grid">
-    <!-- Map Card -->
     <div class="map-card">
       <div class="card-head">
         <h2>Sri Lanka Risk Map</h2>
-        <span class="live-pill">Updated Live</span>
       </div>
 
       <div class="map-wrapper">
-        <!-- Simplified Sri Lanka SVG -->
-        <svg
-          class="sl-map"
-          viewBox="0 0 360 470"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="Sri Lanka map"
-        >
-          <defs>
-            <linearGradient id="islandGradient" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#eaf9ee" />
-              <stop offset="100%" stop-color="#dff5e4" />
-            </linearGradient>
-          </defs>
-
+        <svg class="sl-map" viewBox="0 0 360 470" xmlns="http://www.w3.org/2000/svg">
           <path
-            d="M213 18
-               C245 28, 272 49, 280 80
-               C291 118, 282 144, 294 175
-               C308 213, 304 236, 292 270
-               C286 286, 283 305, 292 325
-               C306 356, 298 389, 278 415
-               C258 442, 227 452, 198 446
-               C164 439, 144 414, 130 384
-               C118 360, 102 348, 86 326
-               C67 299, 62 266, 73 237
-               C82 213, 95 200, 101 176
-               C107 149, 98 128, 106 103
-               C116 71, 137 50, 163 36
+            d="M213 18 C245 28, 272 49, 280 80 C291 118, 282 144, 294 175 C308 213, 304 236, 292 270
+               C286 286, 283 305, 292 325 C306 356, 298 389, 278 415 C258 442, 227 452, 198 446
+               C164 439, 144 414, 130 384 C118 360, 102 348, 86 326 C67 299, 62 266, 73 237
+               C82 213, 95 200, 101 176 C107 149, 98 128, 106 103 C116 71, 137 50, 163 36
                C180 27, 195 21, 213 18Z"
-            fill="url(#islandGradient)"
+            fill="#eaf9ee"
             stroke="#7bcf8b"
             stroke-width="4"
           />
@@ -76,11 +38,8 @@
           [style.left.px]="city.x"
           [style.top.px]="city.y"
           (click)="selectCity(city)"
-          [attr.aria-label]="city.name"
           type="button"
-        >
-          <span class="pulse"></span>
-        </button>
+        ></button>
 
         <div
           *ngFor="let city of cities"
@@ -93,7 +52,6 @@
       </div>
     </div>
 
-    <!-- Details Card -->
     <div class="details-card" *ngIf="selectedCity as city">
       <div class="card-head">
         <h2>{{ city.name }}</h2>
@@ -109,68 +67,20 @@
         </div>
       </div>
 
-      <p class="city-description">
-        This city currently shows a <strong>{{ city.risk.toLowerCase() }}</strong>
-        air quality risk level based on the estimated pollutant readings below.
-      </p>
-
       <div class="metrics">
         <div class="metric-box">
           <span>PM2.5</span>
           <h4>{{ city.pollutants.pm25 }}</h4>
-          <small>µg/m³</small>
         </div>
         <div class="metric-box">
           <span>CO</span>
           <h4>{{ city.pollutants.co }}</h4>
-          <small>ppm</small>
         </div>
         <div class="metric-box">
           <span>NO₂</span>
           <h4>{{ city.pollutants.no2 }}</h4>
-          <small>ppb</small>
         </div>
       </div>
-
-      <div class="tips-box">
-        <h3>Health Guidance</h3>
-        <p *ngIf="city.risk === 'Low'">
-          Air quality is generally safe for outdoor activities.
-        </p>
-        <p *ngIf="city.risk === 'Medium'">
-          Sensitive groups should reduce prolonged outdoor exposure.
-        </p>
-        <p *ngIf="city.risk === 'High'">
-          Limit outdoor activity and consider wearing a mask in polluted areas.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="city-list-card">
-    <div class="card-head">
-      <h2>All Cities</h2>
-      <span class="small-note">Click a city to view details</span>
-    </div>
-
-    <div class="city-list">
-      <button
-        class="city-row"
-        *ngFor="let city of cities"
-        (click)="selectCity(city)"
-        type="button"
-      >
-        <div class="city-left">
-          <span class="legend-dot" [ngClass]="getRiskClass(city.risk)"></span>
-          <div>
-            <h4>{{ city.name }}</h4>
-            <p>AQI {{ city.aqi }}</p>
-          </div>
-        </div>
-        <span class="risk-pill" [ngClass]="getRiskClass(city.risk)">
-          {{ city.risk }}
-        </span>
-      </button>
     </div>
   </div>
 </section>
