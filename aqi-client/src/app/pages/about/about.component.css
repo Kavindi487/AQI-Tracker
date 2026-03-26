@@ -1,0 +1,237 @@
+:host {
+  display: block;
+}
+
+.about-page {
+  min-height: 100vh;
+  background: #f7f8f6;
+  padding: 40px 80px 80px;
+  color: #0f172a;
+}
+
+.hero-card,
+.mission-card,
+.tech-card,
+.timeline-card,
+.feature-card {
+  background: #fff;
+  border: 1.8px solid #1f2937;
+  border-radius: 30px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.05);
+}
+
+.hero-card {
+  padding: 34px;
+  display: grid;
+  grid-template-columns: 1.35fr 0.75fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  color: #4cc35a;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hero-text h1 {
+  font-size: 52px;
+  line-height: 1.05;
+  margin: 0 0 16px;
+  font-weight: 800;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #526076;
+  max-width: 760px;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.hero-badges span,
+.tech-list span {
+  background: #f3f9f3;
+  border: 1px solid #d7ecd9;
+  color: #1a7f2b;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.hero-stat {
+  display: grid;
+  gap: 18px;
+}
+
+.stat-box {
+  border-radius: 24px;
+  background: linear-gradient(135deg, #4cc35a, #8de39a);
+  color: white;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-box h2 {
+  margin: 0 0 10px;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.stat-box p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.mission-card,
+.tech-card,
+.timeline-card {
+  padding: 28px;
+}
+
+.mission-card h2,
+.tech-card h2,
+.timeline-card h2,
+.features-section h2 {
+  font-size: 34px;
+  margin: 0 0 14px;
+  font-weight: 800;
+}
+
+.mission-card p,
+.timeline-step p,
+.feature-card p {
+  color: #526076;
+  line-height: 1.8;
+}
+
+.quote-box {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #f2fcf4 0%, #ffffff 100%);
+  border: 1px solid #dfeee1;
+  border-radius: 22px;
+  padding: 22px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.features-section {
+  margin-bottom: 28px;
+}
+
+.section-head {
+  margin-bottom: 18px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.feature-card {
+  padding: 24px;
+}
+
+.feature-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #4cc35a, #9be7a6);
+  margin-bottom: 18px;
+}
+
+.feature-card h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.timeline {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.timeline-step:first-child {
+  border-top: none;
+}
+
+.timeline-step span {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #4cc35a;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.timeline-step h4 {
+  margin: 4px 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+@media (max-width: 1100px) {
+  .about-page {
+    padding: 30px 20px 60px;
+  }
+
+  .hero-card,
+  .about-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-text h1 {
+    font-size: 38px;
+  }
+
+  .mission-card h2,
+  .tech-card h2,
+  .timeline-card h2,
+  .features-section h2 {
+    font-size: 28px;
+  }
+}

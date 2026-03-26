@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { AqiService, PredictResponse } from '../../service/aqi.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
   city = 'Colombo';
@@ -15,24 +17,49 @@ export class DashboardComponent {
   co: number | null = null;
   no2: number | null = null;
 
-  aqi: number | null = null;
-  label = '—';
+  aqi = 0;
+  label = '-';
+  advice = 'Air quality category is estimated based on entered pollutant levels.';
+  loading = false;
+  error = '';
 
-  predictMock() {
-    // temporary demo logic until Flask API is connected
-    const pm = this.pm25 ?? 0;
-    const c = this.co ?? 0;
-    const n = this.no2 ?? 0;
-    const bias = this.city === 'Colombo' ? 10 : this.city === 'Kandy' ? 6 : 4;
+  constructor(private aqiService: AqiService) {}
 
-    const val = Math.min(500, Math.max(0, pm * 0.6 + c * 12 + n * 0.25 + bias));
-    this.aqi = Math.round(val);
+  predictAQI(): void {
+    this.error = '';
 
-    this.label =
-      this.aqi <= 50 ? 'Good' :
-      this.aqi <= 100 ? 'Moderate' :
-      this.aqi <= 150 ? 'Unhealthy (Sensitive)' :
-      this.aqi <= 200 ? 'Unhealthy' :
-      this.aqi <= 300 ? 'Very Unhealthy' : 'Hazardous';
+    if (this.pm25 === null || this.co === null || this.no2 === null) {
+      this.error = 'Please fill in all pollutant values.';
+      return;
+    }
+
+    this.loading = true;
+
+    this.aqiService.predict({
+      city: this.city,
+      pm25: this.pm25,
+      co: this.co,
+      no2: this.no2
+    }).subscribe({
+      next: (response: PredictResponse) => {
+        this.aqi = response.aqi;
+        this.label = response.category;
+        this.advice = response.advice;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Prediction failed', err);
+        this.error = err?.error?.error || 'Prediction failed. Please try again.';
+        this.loading = false;
+      }
+    });
+  }
+
+  getRingClass(): string {
+    const category = this.label.toLowerCase();
+
+    if (category.includes('good')) return 'low';
+    if (category.includes('moderate')) return 'medium';
+    return 'high';
   }
 }

@@ -1,0 +1,103 @@
+<section class="about-page">
+  <div class="hero-card">
+    <div class="hero-text">
+      <p class="eyebrow">About AQI Predictor</p>
+      <h1>Smarter air quality awareness for Sri Lanka</h1>
+      <p class="lead">
+        AQI Predictor is a machine-learning-powered web application designed to
+        estimate air quality levels across Sri Lankan cities using pollutant data.
+        It aims to make air quality information easier to understand, more visual,
+        and more useful for day-to-day decision making.
+      </p>
+
+      <div class="hero-badges">
+        <span>Machine Learning</span>
+        <span>City Insights</span>
+        <span>Health Guidance</span>
+      </div>
+    </div>
+
+    <div class="hero-stat">
+      <div class="stat-box">
+        <h2>3+</h2>
+        <p>core pollutants analyzed</p>
+      </div>
+      <div class="stat-box">
+        <h2>Low / Medium / High</h2>
+        <p>clear risk categorization</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-grid">
+    <div class="mission-card">
+      <h2>Our Mission</h2>
+      <p>
+        To help users monitor environmental conditions in a simpler and more
+        interactive way by combining machine learning predictions with a modern,
+        easy-to-use interface.
+      </p>
+
+      <div class="quote-box">
+        <p>
+          “Helping people breathe better through data, design, and prediction.”
+        </p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <h2>Technology Stack</h2>
+      <div class="tech-list">
+        <span *ngFor="let item of stack">{{ item }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-section">
+    <div class="section-head">
+      <p class="eyebrow">What the platform offers</p>
+      <h2>Key Features</h2>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <div class="feature-icon"></div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-card">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Prediction Flow</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <span>1</span>
+        <div>
+          <h4>Enter pollutant values</h4>
+          <p>Users provide city and pollutant metrics like PM2.5, CO, and NO₂.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step">
+        <span>2</span>
+        <div>
+          <h4>Model estimates AQI</h4>
+          <p>The backend processes the values and predicts an AQI score.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step">
+        <span>3</span>
+        <div>
+          <h4>Risk is visualized clearly</h4>
+          <p>The UI shows AQI, category, and city-level risk understanding.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
