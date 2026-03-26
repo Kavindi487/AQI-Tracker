@@ -1,58 +1,105 @@
-How It Works
-The user opens the Angular frontend.
-The user selects a city and enters pollutant values.
-The frontend sends a POST request to the Flask backend.
-The backend loads the trained ML model and predicts the AQI.
-The predicted AQI, category, and health advice are returned as JSON.
-The frontend displays the result with color-coded risk styling.
-AQI Prediction Inputs
+# 🌿 AQI Tracker – Air Quality Prediction System
 
-The system currently uses these features:
+![Angular](https://img.shields.io/badge/Frontend-Angular-red?logo=angular)
+![Flask](https://img.shields.io/badge/Backend-Flask-black?logo=flask)
+![Python](https://img.shields.io/badge/Language-Python-blue?logo=python)
+![ML](https://img.shields.io/badge/Model-RandomForest-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-city
-pm25
-co
-no2
-AQI Categories
+---
 
-The predicted AQI is mapped into categories such as:
+## 📌 Overview
 
-Good
-Moderate
-Unhealthy (Sensitive)
-Unhealthy
-Very Unhealthy
-Hazardous
-Backend API
-Health Check
+AQI Tracker is a full-stack web application that predicts Air Quality Index (AQI) values for Sri Lankan cities using machine learning.
 
-GET
+It combines:
+- 📊 Machine learning prediction
+- 🌐 Flask REST API backend
+- 💻 Angular frontend UI
 
-/api/health
+---
 
-Sample response:
+## 🚀 Features
 
+- Predict AQI using pollutant inputs  
+- Real-time frontend → backend integration  
+- Color-coded AQI risk visualization  
+- Sri Lanka city risk map  
+- Health advice based on AQI level  
+- Clean and responsive UI  
+
+---
+
+## ⚙️ How It Works
+
+1. The user opens the Angular frontend  
+2. The user selects a city and enters pollutant values  
+3. The frontend sends a POST request to the Flask backend  
+4. The backend loads the trained ML model and predicts AQI  
+5. The predicted AQI, category, and advice are returned as JSON  
+6. The frontend displays results with color-coded styling  
+
+---
+
+## 📊 AQI Prediction Inputs
+
+The system uses:
+
+- city  
+- pm25  
+- co  
+- no2  
+
+---
+
+## 🏷️ AQI Categories
+
+- Good  
+- Moderate  
+- Unhealthy (Sensitive)  
+- Unhealthy  
+- Very Unhealthy  
+- Hazardous  
+
+---
+
+## 🌐 Backend API
+
+### 🔹 Health Check
+
+GET  
+/api/health  
+
+Response:
+
+```json
 {
   "status": "ok",
   "message": "AQI Predictor backend is running"
 }
-Predict AQI
+```
 
-POST
+---
 
-/api/predict
+### 🔹 Predict AQI
 
-Request body:
+POST  
+/api/predict  
 
+Request:
+
+```json
 {
   "city": "Colombo",
   "pm25": 35,
   "co": 1.2,
   "no2": 40
 }
+```
 
-Sample response:
+Response:
 
+```json
 {
   "aqi": 95.4,
   "category": "Moderate",
@@ -64,96 +111,117 @@ Sample response:
     "no2": 40
   }
 }
-Running the Project Locally
-1. Clone the repository
+```
+
+---
+
+## ▶️ Running the Project Locally
+
+### 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/Kavindi487/AQI-Tracker.git
 cd AQI-Tracker
-Run the Backend
+```
 
-Go to the backend folder:
+---
 
+## 🖥️ Run Backend
+
+```bash
 cd server
-
-Install dependencies:
-
 py -m pip install -r requirements.txt
-
-Generate dataset:
-
 py generate_data.py
-
-Train model:
-
 py train_model.py
-
-Start Flask server:
-
 py app.py
+```
 
-Backend will run on:
+Backend runs at:  
+http://127.0.0.1:5000  
 
-http://127.0.0.1:5000
-Run the Frontend
+---
 
-Open a new terminal and go to:
+## 💻 Run Frontend
 
+```bash
 cd aqi-client
-
-Install dependencies:
-
 npm install
-
-Run Angular app:
-
 ng serve
+```
 
-Frontend will run on:
+Frontend runs at:  
+http://localhost:4200  
 
-http://localhost:4200
-Example Test Values
+---
 
-Use these values in the dashboard for testing:
+## 🧪 Example Test Values
 
-City: Colombo
-PM2.5: 35
-CO: 1.2
-NO₂: 40
-Machine Learning Overview
+- City: Colombo  
+- PM2.5: 35  
+- CO: 1.2  
+- NO₂: 40  
 
-The backend model is trained using a pipeline that includes:
+---
 
-One-hot encoding for the city feature
-Random Forest Regressor for AQI prediction
+## 🧠 Machine Learning Overview
 
-The current version uses synthetic AQI data generated for sample Sri Lankan cities.
+- One-hot encoding for city  
+- Random Forest Regressor  
+- Synthetic dataset used for training  
 
-Screens and Pages
-Dashboard
-Input pollutant values
-Get AQI prediction
-View category and advice
-Cities
-View a Sri Lanka city risk map
-Explore low, medium, and high AQI risk zones
-About
-Learn about the project
-View features and technology stack
-Login / Register
-UI pages prepared for future authentication support
-Future Improvements
-Use real environmental datasets
-Add prediction history
-Add AQI trend charts
-Add user authentication with database support
-Deploy frontend and backend
-Add live air quality feeds
-Author
+Performance:
+- MAE ≈ 7.4  
+- R² ≈ 0.93  
 
-Kavindi Vidusari
-<img width="1919" height="965" alt="Screenshot 2026-03-26 103135" src="https://github.com/user-attachments/assets/71117dd2-b145-41b3-9527-4845299bf401" />
-<img width="1908" height="964" alt="Screenshot 2026-03-26 103154" src="https://github.com/user-attachments/assets/bb9c9678-62f5-4524-ab96-d077d170c9d7" />
-<img width="1919" height="978" alt="Screenshot 2026-03-26 103145" src="https://github.com/user-attachments/assets/71129e47-5e02-469b-aefc-2e5ecda9cdfb" />
+---
 
-License
+## 🖥️ Screens and Pages
 
-This project is for learning and academic/project use
+### 📊 Dashboard
+- Input pollutant values  
+- Get AQI prediction  
+- View category and advice  
+
+### 🗺️ Cities
+- Sri Lanka map with risk levels  
+- Low / Medium / High zones  
+
+### ℹ️ About
+- Project overview  
+- Features and tech stack  
+
+### 🔐 Login / Register
+- UI ready for future authentication  
+
+---
+
+## 📸 Screenshots
+
+![Dashboard](https://github.com/user-attachments/assets/71117dd2-b145-41b3-9527-4845299bf401)
+
+![Cities Page](https://github.com/user-attachments/assets/bb9c9678-62f5-4524-ab96-d077d170c9d7)
+
+![Login Page](https://github.com/user-attachments/assets/71129e47-5e02-469b-aefc-2e5ecda9cdfb)
+
+---
+
+## 🚀 Future Improvements
+
+- Real-world dataset integration  
+- AQI history tracking  
+- Charts and analytics  
+- Authentication system  
+- Deployment (cloud)  
+- Live AQI data feeds  
+
+---
+
+## 👩‍💻 Author
+
+Kavindi Vidusari  
+
+---
+
+## 📜 License
+
+This project is for academic and learning purposes.
