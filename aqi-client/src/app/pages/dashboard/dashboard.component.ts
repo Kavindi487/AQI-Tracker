@@ -1,39 +1,41 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
-import { AqiService, PredictResponse } from '../../service/aqi.service';
+import { AqiService } from '../../service/aqi.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, HttpClientModule, NavbarComponent],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   city = 'Colombo';
+  cities = ['Colombo', 'Kandy', 'Galle'];
+
   pm25: number | null = null;
   co: number | null = null;
   no2: number | null = null;
 
-  aqi = 0;
-  label = '-';
-  advice = 'Air quality category is estimated based on entered pollutant levels.';
+  aqi: number | null = null;
+  label = '—';
+  advice = '';
   loading = false;
   error = '';
 
   constructor(private aqiService: AqiService) {}
 
-  predictAQI(): void {
+  predictAQI() {
     this.error = '';
+    this.loading = true;
 
     if (this.pm25 === null || this.co === null || this.no2 === null) {
-      this.error = 'Please fill in all pollutant values.';
+      this.error = 'Please fill all fields.';
+      this.loading = false;
       return;
     }
-
-    this.loading = true;
 
     this.aqiService.predict({
       city: this.city,
@@ -41,25 +43,16 @@ export class DashboardComponent {
       co: this.co,
       no2: this.no2
     }).subscribe({
-      next: (response: PredictResponse) => {
-        this.aqi = response.aqi;
-        this.label = response.category;
-        this.advice = response.advice;
+      next: (res) => {
+        this.aqi = res.aqi;
+        this.label = res.category;
+        this.advice = res.advice;
         this.loading = false;
       },
       error: (err) => {
-        console.error('Prediction failed', err);
-        this.error = err?.error?.error || 'Prediction failed. Please try again.';
+        this.error = err?.error?.error || 'Prediction failed.';
         this.loading = false;
       }
     });
-  }
-
-  getRingClass(): 'low' | 'medium' | 'high' {
-    const category = this.label.toLowerCase();
-
-    if (category.includes('good')) return 'low';
-    if (category.includes('moderate')) return 'medium';
-    return 'high';
   }
 }

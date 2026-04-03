@@ -2,18 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface PredictRequest {
-  city: string;
-  pm25: number;
-  co: number;
-  no2: number;
-}
-
-export interface PredictResponse {
+export interface AqiResponse {
   aqi: number;
   category: string;
   advice: string;
-  inputs: PredictRequest;
+  inputs: {
+    city: string;
+    pm25: number;
+    co: number;
+    no2: number;
+  };
 }
 
 @Injectable({
@@ -24,7 +22,12 @@ export class AqiService {
 
   constructor(private http: HttpClient) {}
 
-  predict(data: PredictRequest): Observable<PredictResponse> {
-    return this.http.post<PredictResponse>(`${this.apiUrl}/predict`, data);
+  predict(payload: {
+    city: string;
+    pm25: number;
+    co: number;
+    no2: number;
+  }): Observable<AqiResponse> {
+    return this.http.post<AqiResponse>(`${this.apiUrl}/predict`, payload);
   }
 }
